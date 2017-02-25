@@ -20,7 +20,6 @@ Td5menu.h -
 #define Td5Menu_h
 
 #include <Buttons.h>
-//#include <LiquidCrystalEx.h>
 #include <Adafruit_SSD1306.h>
 #include "td5defs.h"
 #include "td5hmi.h"

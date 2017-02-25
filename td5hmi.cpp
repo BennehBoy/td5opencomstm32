@@ -17,8 +17,6 @@ Td5Hmi.cpp -
  
 */
 
-//#include <MemoryFree.h>
-//#include <Stdio.h>
 #include "td5hmi.h"
 #include "td5comm.h"
 #include "td5strings.h"
@@ -53,59 +51,37 @@ Hmi::Hmi(byte c, byte r, byte l)
 
 LcdBacklight::LcdBacklight(byte pinBkLight)
 {
-/*   pin = pinBkLight;
-  pinMode(pin, OUTPUT);
-  brightness = 0;   */
+
 }
 
 void LcdBacklight::incBrightness(byte inc)
 {
-/*   if((brightness + inc) <= 100)
-  {
-    brightness += inc;
-  }
-  update(); */
+
 }
 
 void LcdBacklight::decBrightness(byte dec)
 {
-/*   if((brightness-dec)>=0)
-  {
-    brightness -= dec;
-  }
-  update(); */
+
 }
 
 void LcdBacklight::update()
 {
-/*   on() */;  
+
 }
 
 void LcdBacklight::setBrightness(byte br)
 {
-/*   brightness = br; */
+
 }
 
 void LcdBacklight::on()
 {
-/* #if  defined(__AVR_ATmega168__) || defined(__AVR_ATmega328P__)
-  analogWrite(pin, 160-((brightness/10))*12); 
-#endif
-  
-#if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
-  analogWrite(pin, 60+((brightness/10)*12)); 
-#endif */
+
 }
 
 void LcdBacklight::off()
 {
-/* #if  defined(__AVR_ATmega168__) || defined(__AVR_ATmega328P__)
-  analogWrite(pin, 255); 
-#endif
 
-#if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
-  analogWrite(pin, 0); 
-#endif */
 }
 
 
@@ -132,7 +108,6 @@ void ProgBar::show()
 void ProgBar::hide()
 {
   // here we should restore the current screen
-
   show();
 }
 
@@ -266,27 +241,6 @@ void List::render(byte item_sel)
 
   for (byte i=_first_item;i<_first_item+item_per_screen;i++)
   {
-/*      if (i<=_last_item) // Copy item
-    {
-      byte len=strlcpy(list_buffer,item_list[i], length+1);
-      if (len<length)
-      {
-        for (byte k=len;k<length;k++)
-        {
-          list_buffer[k]=' ';
-        }	
-        list_buffer[length]=0;
-      }
-    }
-    else // Fill blank
-    {
-      byte j;
-      for (j=0;j<length;j++)
-      {
-        list_buffer[j]=' ';
-      }
-      list_buffer[j]=0;
-    } */
 
     //Display item on LCD
     lcd.setCursor((col+((i-_first_item)/item_rows)*(length+1))*8, (row+(i-_first_item)%item_rows)*8); 
@@ -376,37 +330,6 @@ void ParamList::render(byte item_sel)
 
   for (byte i=_first_item;i<_first_item+item_per_screen;i++)
   {
- /*   if (i<=_last_item) // Copy item
-    {
-       byte len=strlcpy(list_buffer,(char*)(item_list+i), length_list+1);
-	  //byte len=strlen((char*)pgm_read_word(item_list+i));
-      if (len<length_list)
-      {
-        for (byte k=len;k<length_list;k++)
-        {
-          list_buffer[k]=' ';
-        }	
-        list_buffer[length]=0;
-      }
-      len=strlcpy(list_buffer+length_list,(char*)item_param+(6*i), length_param+1);
-      if (len<length_param)
-      {
-        for (byte k=len;k<length_param;k++)
-        {
-          list_buffer[k+length_list]=' ';
-        }	
-        list_buffer[length]=0;
-      }
-    }
-    else // Fill blank
-    {
-      byte j;
-      for (j=0;j<length;j++)
-      {
-        list_buffer[j]=' ';
-      }
-      list_buffer[j]=0;
-    } */
 
     //Display item on LCD
     lcd.setCursor((col+((i-_first_item)/item_rows)*(length+1))*8, (row+(i-_first_item)%item_rows)*8); 
@@ -428,12 +351,16 @@ void ParamList::render(byte item_sel)
 void print_welcome_screen()
 {
   lcd.clearDisplay();
-  lcd.setCursor(1*8, 0);
+  lcd.setCursor(2*8, 0);
   lcd.print(Td5OpenComWelcome);
-  lcd.setCursor(5*8, 1*8);
+  lcd.setCursor(4*8, 1*8);
+  lcd.print("for STM32"); 
+  lcd.setCursor(4*8, 2*8);
   lcd.print("by Luca72");
+  lcd.setCursor(3*8, 3*8);
+  lcd.print("& BennehBoy");
   lcd.display();
-  //lcd.print(freeMemory());
+  delay(1000);
 }
 
 void print_connect_screen(char *str)

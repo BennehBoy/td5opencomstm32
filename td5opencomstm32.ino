@@ -9,18 +9,9 @@
  
  */
 
-// SD card: it uses too much RAM on a 328p. Uncomment on Mega 2560
-
-//#include <avr/pgmspace.h>
-//#include <avr/sleep.h>
-//#include <avr/power.h>
-//#include <SoftwareSerialEx.h>
-//#include <LiquidCrystalEx.h>
 #include <Adafruit_SSD1306.h>
 #include <Wire.h>
-//#include <E24C1024.h>
 #include <Buttons.h>
-//#include <MemoryFree.h>
 #include "td5defs.h"
 #ifdef _USE_SD_
 #include <SdFat.h>
@@ -67,10 +58,7 @@ static boolean logFuelling = false;
 byte menuChoice = 0;
 
 // Initialize global objects
-//SoftwareSerialEx obdSerial(K_IN, K_OUT); // RX, TX
-//LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 Adafruit_SSD1306 lcd(OLED_DC, OLED_RESET, OLED_CS);
-//LcdBacklight lcdbacklight(lcdBKlightPin);
 Td5Comm td5;
 Td5Remote remote;
 Td5Menu menu(btns);
@@ -109,8 +97,7 @@ void setup()
   Serial.begin(57600);
   #ifdef _DEBUG_
   Serial.println("Startup");
-  Serial.print("Free Memory: ");
-  //Serial.println(freeMemory());
+
   #endif
 
   #ifdef _USE_BLUETOOTH_
@@ -135,17 +122,12 @@ void setup()
   lcd.setTextColor(WHITE);
   lcd.setTextSize(1);
 
-  // Initialize LCD
-  //lcd.begin(20, 4);
-
   // Initialize OBD comunication
   td5.init();
   
   // Initialize Menu
   menu.init();
   
-  // Initialize Lcd Backlight
-  //lcdbacklight.setBrightness(70);
   
   #ifdef _USE_SD_
   // Initialize SD reader

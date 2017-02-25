@@ -22,7 +22,6 @@ Td5Comm.h -
 
 #include <Arduino.h>
 #include <Wire.h>
-//#include <SoftwareSerialEx.h>
 #include "td5defs.h"
 
 #define Td5RequestByteDelay       5

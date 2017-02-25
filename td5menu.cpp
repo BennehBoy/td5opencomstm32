@@ -17,7 +17,6 @@ Td5Menu.cpp -
  */
 
 #include <Arduino.h>
-//#include <avr/pgmspace.h>
 #include "td5menu.h"
 #include "td5strings.h"
 
@@ -341,14 +340,10 @@ void Td5Menu::drawMenu()
   #endif
   if(!hidden)
   {
-    //char list_buffer[21];
     lcd.clearDisplay();
     lcd.setCursor(0,0);
-    //strlcpy(list_buffer,(char*)(menu_header+current_header), 21);
-	//lcd.print(list_buffer);
 	lcd.print(menu_header[current_header]);
     #ifdef _DEBUG_
-    //Serial.println(list_buffer);
 	Serial.println(menu_header[current_header]);
     #endif
     current_menu_ptr->show();
@@ -369,8 +364,8 @@ void Td5Menu::show()
 }
 
 //Interactions
-byte Td5Menu::wait_on_escape(int ref_time) 
-{ // Returns key pressed or 0 if time expires before any key was pressed.
+byte Td5Menu::wait_on_escape(int ref_time) { 
+  // Returns key pressed or 0 if time expires before any key was pressed.
   //Wait on button push.
   long temp0;
   byte temp1;

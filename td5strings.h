@@ -20,8 +20,6 @@ Td5strings.h -
 #define Td5Strings_h
 
 #include "td5defs.h"
-extern char p_buffer[32];
-//#define P(str) (strcpy_P(p_buffer, PSTR(str)), p_buffer)
 
 extern const char *menu_header[];
 extern const char *_main_menu[];

@@ -18,9 +18,7 @@ Td5Comm.cpp -
  */
 
 #include <Arduino.h>
-//#include <avr/pgmspace.h>
 #include <Wire.h>
-//#include <E24C1024.h>
 #include "td5comm.h"
 #include "td5strings.h"
 #include "td5hmi.h"
@@ -30,7 +28,6 @@ Td5Comm.cpp -
 static float ambientPressure = 100.0;
 
 #define obdSerial Serial1
-//extern SoftwareSerialEx obdSerial;
 extern Td5Remote remote;
 
 const unsigned char pid_0x00[] = { 0x81, 0x13, 0xF7, 0x81, 0x0C };        // INIT_FRAME
@@ -173,7 +170,6 @@ void Td5Comm::init()
   pinMode(ledPin, OUTPUT);
   pinMode(K_OUT, OUTPUT);
   pinMode(K_IN, INPUT);
-  //pinMode(K_IN, INPUT);
 }
 
 boolean Td5Comm::read_byte(byte * b)

@@ -20,7 +20,6 @@ Td5Hmi.h -
 #ifndef Td5Hmi_h
 #define Td5Hmi_h
 
-//#include <LiquidCrystalEx.h>
 #include <Adafruit_SSD1306.h>
 #include <Buttons.h>
 #include "td5defs.h"
@@ -150,8 +149,5 @@ extern Button btn_enter;
 extern Button btn_quit;
 extern Button btn_powerup;
 extern Button *btns[];
-
-
-//extern size_t strlcpy_P (char *, const char *, size_t );
 
 #endif

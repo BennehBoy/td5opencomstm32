@@ -20,7 +20,7 @@ Td5Defs.h -
 #ifndef Td5Defs_h
 #define Td5Defs_h
 
-#define Td5OpenComWelcome  "Td5OpenCom v0.11q"
+#define Td5OpenComWelcome  "Td5OpenCom v0.1"
 
 // Debug mode: enables debug comments on serial monitor.
 #define _DEBUG_
