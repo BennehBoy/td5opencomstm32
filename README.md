@@ -1,6 +1,6 @@
 # td5opencomstm32
 
-Port of Luca Veronasi's (Luca72) td5opencom to STM32 (Maple Mini)
+Port of Luca Veronasi's (Luca72) td5opencom to STM32 (Maple Mini) http://luca72.xoom.it/td5mapsuiteweb/archive/td5opencom/
 
 This port also includes Paul Jacobson's TD% Keygen code -> https://github.com/pajacobson/td5keygen
 
