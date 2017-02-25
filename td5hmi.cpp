@@ -230,6 +230,8 @@ void List::render(byte item_sel)
   byte _first_item;
   byte _last_item;
 
+  lcd.fillRect(0, 8, 127, 63, BLACK);
+  
   item_selected = item_sel;
 
   _first_item=item_selected-item_per_screen/2;
@@ -248,9 +250,6 @@ void List::render(byte item_sel)
     if (i<=_last_item)
     {
       lcd.write((i==item_selected)?indicator:' ');// Show " " or a dot
-	  if(i!=item_selected) {
-		lcd.fillRect((col+((i-_first_item)/item_rows)*(length+1))*8, (row+(i-_first_item)%item_rows)*8, 8, 8, BLACK);
-	  }
     }
     else
     {

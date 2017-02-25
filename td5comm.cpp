@@ -115,13 +115,13 @@ void retrieve_keys_from_eeprom(uint8_t *seed, uint8_t *key)
   	keyBytes_t myKey;
 	int keyLow, keyHigh;
 
-    myKey.low_byte = seed[0];  //might need to switch order
-    myKey.high_byte = seed[1];
+    myKey.low_byte = seed[1];  //might need to switch order
+    myKey.high_byte = seed[0];
 
     keyGenerate(&myKey);
  
-  key[0] = myKey.low_byte; 
-  key[1] = myKey.high_byte; 
+  key[1] = myKey.low_byte; 
+  key[0] = myKey.high_byte; 
 }
 
 void keyGenerate(keyBytes_t * key) {
@@ -350,7 +350,7 @@ void Td5Comm::initComm()
     {
       // drive K line high for 300ms
       digitalWrite(K_OUT, HIGH);
-      digitalWrite(ledPin, HIGH);
+      //digitalWrite(ledPin, HIGH);
       initTime = currentTime + 300;
       initStep++;
     }
@@ -361,7 +361,7 @@ void Td5Comm::initComm()
     {
       // start or stop bit
       digitalWrite(K_OUT, (initStep == 2 ? LOW : HIGH));
-      digitalWrite(ledPin, (initStep == 2 ? LOW : HIGH));
+      //digitalWrite(ledPin, (initStep == 2 ? LOW : HIGH));
       initTime = currentTime + (initStep == 2 ? 25 : 25);
       initStep++;
     }
@@ -375,7 +375,7 @@ void Td5Comm::initComm()
       // bit banging done, now verify connection at 10400 baud
       if (getPid(&pidInitFrame) <= 0)
       {
-        digitalWrite(ledPin, LOW);
+        //digitalWrite(ledPin, LOW);
         initStep = 0;
         break;
       }
@@ -434,7 +434,7 @@ void Td5Comm::initComm()
 
       delay(55);
       ecuConnection = true;
-      digitalWrite(ledPin, HIGH);
+      //digitalWrite(ledPin, HIGH);
       initStep = 0;       
     }
     break;
@@ -670,7 +670,7 @@ Td5Pid::Td5Pid(byte ID, byte reqlen, byte resplen, long cycletime)
   responseLength = resplen;  
 
   requestFrame= (byte *)malloc(sizeof(byte) * reqlen);
-  memcpy_P(requestFrame, (byte*)pgm_read_word(&(td5_pids[id])),reqlen);
+  memcpy(requestFrame, td5_pids[id],reqlen);
   responseFrame = (byte *)malloc(sizeof(byte) * resplen);
 }
 
