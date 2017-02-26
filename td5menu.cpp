@@ -80,14 +80,14 @@ void Td5Menu::setCurrentMenu(byte sub_menu)
       break; 
 
     case VOID_MENU:
-    case MAIN_MENU_INSTRUMENT:
+/*     case MAIN_MENU_INSTRUMENT:
     case SUB_MENU_ECU_SETTINGS_READ:
     case SUB_MENU_ECU_SETTINGS_SAVE:
     case SUB_MENU_ECU_SETTINGS_RESTORE:    
     case SUB_MENU_ECU_FAULT_CODES_READ:
     case SUB_MENU_ECU_FAULT_CODES_RESET:
     case SUB_MENU_ECU_FUELLING:
-    case MAIN_MENU_OPTIONS:
+    case MAIN_MENU_OPTIONS: */
       setCurrentMenuPtr(&voidMenu); 
       current_header = -1;
       hide();

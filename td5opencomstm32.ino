@@ -421,6 +421,7 @@ void modeToMenu()
   Serial.println("Menu MODE");
   #endif
   menu.setTopMenu();
+  Serial.println("fucked ya!");
   deviceMode = MODE_MENU;
 }
 
@@ -569,7 +570,7 @@ void modeFaultCodesRead()
         int faultCode; 
         
         faultCode = td5.getFaultCode(currentFaultCode-1);        
-        strcpy_P(fault_code_buffer, (char*)pgm_read_word(&(fault_code[faultCode])));
+        strcpy(fault_code_buffer, fault_code[faultCode]);
         print_read_fault_codes_screen(currentFaultCode, td5.getFaultCodesCount(), fault_code_buffer);
         if(strcmp(fault_code_buffer, "Unknown")==0)
         {

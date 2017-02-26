@@ -60,8 +60,8 @@ private:
 #define MAIN_MENU                         1
 #define MAIN_MENU_INSTRUMENT             10
 #define MAIN_MENU_ECU                    20
-#define SUB_MENU_ECU_FUELLING            21
-#define SUB_MENU_ECU_SETTINGS            22
+//#define SUB_MENU_ECU_FUELLING            21
+//#define SUB_MENU_ECU_SETTINGS            22
 #define SUB_MENU_ECU_IN_OUT              23
 #define SUB_MENU_ECU_FAULT_CODES         24
 #define SUB_MENU_ECU_FAULT_CODES_READ    25

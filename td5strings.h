@@ -26,6 +26,7 @@ extern const char *_main_menu[];
 extern const char *_sub_menu_0[];
 extern const char *_sub_menu_0_1[];
 extern const char *_sub_menu_0_3[];
+extern const char *_sub_menu_0_4[];
 extern const char *_void_menu[];
 
 extern const char *fuelling_params[];

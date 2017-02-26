@@ -130,15 +130,15 @@ private:
 
 // Functions
 void print_welcome_screen();
-void print_connect_screen(char* str);
+void print_connect_screen(const char* str);
 void print_instrument_screen(int rpm = 0, float coolant_t = 0.0, float turbo_p = 0.0, float battery = 0.0, float ambient_p = 1.0, float maf = 0.0, float inlet_t = 0.0, float fuel_t = 0.0);
-void print_read_fault_codes_screen(int index, int count, char* description);
+void print_read_fault_codes_screen(int index, int count, const char* description);
 void print_reset_fault_codes_screen(boolean yes_no);
 void print_fuelling_screen(byte currentParam, boolean logActive);
 void print_options_screen(byte currentParam);
 void update_fuelling_screen(byte currentParam);
 
-void print_pid(byte col, byte row, char* tag, float fvalue, byte precision);
+void print_pid(byte col, byte row, const char* tag, float fvalue, byte precision);
 void setBrightness(byte bright);
 
 extern Button btn_up;

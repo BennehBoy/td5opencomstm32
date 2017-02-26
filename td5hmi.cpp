@@ -362,7 +362,7 @@ void print_welcome_screen()
   delay(1000);
 }
 
-void print_connect_screen(char *str)
+void print_connect_screen(const char *str)
 {
   lcd.clearDisplay();
   lcd.setCursor(0, 0);
@@ -375,18 +375,18 @@ void print_connect_screen(char *str)
 void print_instrument_screen(int rpm, float coolant_t, float turbo_p, float battery, float ambient_p, float maf, float inlet_t, float fuel_t)
 {
   lcd.clearDisplay();
-  print_pid(0, 0, "RPM", rpm, 0); 
-  print_pid(10*8, 0, "CoT", coolant_t, 1);
-  print_pid(0, 1*8, "TbP", turbo_p, 2); 
-  print_pid(10*8, 1*8, "BtV", battery, 1);
-  print_pid(0, 2*8, "AmP", ambient_p, 2); 
-  print_pid(10*8, 2*8, "MAF", maf, 1);
-  print_pid(0, 3*8, "InT", inlet_t, 1); 
-  print_pid(10*8, 3*8, "FuT", fuel_t, 1);
+  print_pid(0, 0, "RPM", pidRPM.getlValue(), 0); 
+  print_pid(8*8, 0, "CoT", pidTemperatures.getfValue(0), 1);
+  print_pid(0, 1*8, "TbP", (pidTurboPressureMaf.getfValue(0)-pidAmbientPressure.getfValue(1))*100.0F, 2); 
+  print_pid(8*8, 1*8, "BtV", pidBatteryVoltage.getfValue(), 1);
+  print_pid(0, 2*8, "AmP", pidAmbientPressure.getfValue(1)*100.0F, 1); 
+  print_pid(8*8, 2*8, "MAF", pidTurboPressureMaf.getfValue(2), 1);
+  print_pid(0, 3*8, "InT", pidTemperatures.getfValue(1), 1); 
+  print_pid(8*8, 3*8, "FuT", pidTemperatures.getfValue(3), 1);
   lcd.display();
 }
 
-void print_read_fault_codes_screen(int index, int count, char* description)
+void print_read_fault_codes_screen(int index, int count, const char* description)
 {
   char buf[7];
   lcd.clearDisplay();
@@ -453,27 +453,36 @@ void update_fuelling_screen(byte currentParam)
   fuellingParams.update(currentParam);
 }
 
-
-void print_pid(byte col, byte row, char* tag, float fvalue, byte precision)
+void print_pid(byte col, byte row, const char* tag, float fvalue, byte precision)
 {
   lcd.setCursor(col, row);
   lcd.print(tag);
-  byte colOffset;
+  int8_t colOffset;
   if(precision == 0)
   {
-    colOffset = 5;
+    colOffset = 3;
   }
   else
   {
-    colOffset = 5 - precision;
+    colOffset = 3 - precision;
   }
-  lcd.setCursor((col + colOffset)*8, row*8);
+/*   lcd.setCursor(col + (colOffset*8), row);
   if (fvalue < 10.0)
     lcd.print(' ');
   if (fvalue < 100.0)
     lcd.print(' ');
   if ((fvalue < 1000.0) && (precision == 0))
-    lcd.print(' ');
+    lcd.print(' '); */
+
+  if (fvalue < 10.0)
+    colOffset++;
+  if (fvalue < 100.0)
+    colOffset++;
+  if (fvalue < 1000.0) 
+    colOffset++; 
+   lcd.setCursor(col + (colOffset*8), row);
+
+
   lcd.print(fvalue, precision);
 }
 
